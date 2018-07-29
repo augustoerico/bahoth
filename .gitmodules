@@ -1,0 +1,3 @@
+[submodule "games-api"]
+	path = games-api
+	url = git@github.com:augustoerico/bahoth-games-api.git
