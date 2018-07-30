@@ -1,0 +1,25 @@
+service: ${file(package.json):name}
+version: ${file(package.json):version}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+# you can overwrite defaults here
+#  stage: dev
+#  region: us-east-1
+
+package:
+  exclude:
+    - .gitignore
+    - games-api/**
+    - characters/**
+
+functions:
+
+  heartbeat: # create any endpoint to create the API in API Gateway
+    handler: handlers/heartbeat.handler
+    events:
+      - http:
+          path: /
+          method: get
