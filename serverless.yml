@@ -24,15 +24,9 @@ functions:
 
 resources:
 
-  Resources:
-    restApi:
-      Type: AWS::ApiGateway::RestApi
-      Properties:
-        Name: ${self:service}:${self:provider.stage}:ApiGatewayRestApi
-
   Outputs:
     ApiGatewayRestApi:
       Value:
-        "Fn::GetAtt": [ restApi, RootResourceId ]
+        "Fn::GetAtt": [ ApiGatewayRestApi, RootResourceId ]
       Export:
         Name: ${self:service}:${self:provider.stage}:RootResourceId
