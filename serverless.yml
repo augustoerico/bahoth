@@ -4,9 +4,7 @@ version: ${file(package.json):version}
 provider:
   name: aws
   runtime: nodejs8.10
-
-# you can overwrite defaults here
-#  stage: dev
+  stage: ${opt:stage, 'dev'}
 #  region: us-east-1
 
 package:
@@ -23,3 +21,18 @@ functions:
       - http:
           path: /
           method: get
+
+resources:
+
+  Resources:
+    restApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: ${self:service}:${self:provider.stage}:ApiGatewayRestApi
+
+  Outputs:
+    ApiGatewayRestApi:
+      Value:
+        "Fn::GetAtt": [ restApi, RootResourceId ]
+      Export:
+        Name: ${self:service}:${self:provider.stage}:RootResourceId
