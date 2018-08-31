@@ -1,3 +1,0 @@
-[submodule "characters-api"]
-	path = characters-api
-	url = git@github.com:augustoerico/bahoth-characters-api.git
